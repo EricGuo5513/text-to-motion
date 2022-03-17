@@ -118,13 +118,15 @@ python train_tex_mot_match.py --name text_mot_match --gpu_id 1 --batch_size 8 --
 ```sh
 python eval_comp_v6.py --name Comp_v6_KLD01 --est_length --repeat_time 3 --num_results 10 --ext default --gpu_id 1
 ```
-where *--est_length* asks the model to use sampled motion lengths for generation, *--repeat_time* gives how many sampling rounds are required for each description. This script will results in 3x10 animations under directory *./eval_results/t2m/Comp_v6_KLD01/default/*.
+where *--est_length* asks the model to use sampled motion lengths for generation, *--repeat_time* gives how many sampling rounds are carried out for each description. This script will results in 3x10 animations under directory *./eval_results/t2m/Comp_v6_KLD01/default/*.
 
 #### Sampling results from customized descriptions
 ```sh
 python gen_motion_script.py --name Comp_v6_KLD01 --text_file input.txt --repeat_time 3 --ext customized --gpu_id 1
 ```
 This will generate 3 animated motions for each description given in text_file *./input.txt*.
+
+If you find problem with installing ffmpeg, you may not be able to animate 3d results in mp4. Try gif instead.
 
 ## Quantitative Evaluations
 ```sh
