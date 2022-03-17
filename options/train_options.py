@@ -6,27 +6,26 @@ class TrainCompOptions(BaseOptions):
         BaseOptions.initialize(self)
         self.parser.add_argument('--batch_size', type=int, default=32, help='Batch size')
 
-        self.parser.add_argument('--max_sub_epoch', type=int, default=50, help='Training iterations')
-        self.parser.add_argument('--tf_ratio', type=float, default=0.4, help='Training iterations')
+        self.parser.add_argument('--max_sub_epoch', type=int, default=50, help='Maximum epoch while training a scheduled length')
+        self.parser.add_argument('--tf_ratio', type=float, default=0.4, help='Teacher forcing ratio')
 
-        self.parser.add_argument('--feat_bias', type=float, default=5, help='Layers of GRU')
+        self.parser.add_argument('--feat_bias', type=float, default=5, help='Scales for global motion features and foot contact')
 
-        self.parser.add_argument('--early_stop_count', type=int, default=3, help='Training iterations')
+        self.parser.add_argument('--early_stop_count', type=int, default=3, help='To early stop each subepoch in a scheduled length')
 
-        self.parser.add_argument('--lambda_rec_mov', type=float, default=1, help='Layers of GRU')
-        self.parser.add_argument('--lambda_rec_mot', type=float, default=1, help='Layers of GRU')
+        self.parser.add_argument('--lambda_rec_mov', type=float, default=1, help='Weight factor for snippet reconstruction')
+        self.parser.add_argument('--lambda_rec_mot', type=float, default=1, help='Weight factor for motion reconstruction')
 
-        self.parser.add_argument('--lambda_kld', type=float, default=0.005, help='Layers of GRU')
-        self.parser.add_argument('--lambda_rec', type=float, default=1, help='Layers of GRU')
+        self.parser.add_argument('--lambda_kld', type=float, default=0.005, help='Weight factor for KL Divergence')
 
-        self.parser.add_argument('--lr', type=float, default=2e-4, help='Layers of GRU')
+        self.parser.add_argument('--lr', type=float, default=2e-4, help='Learning rate')
 
-        self.parser.add_argument('--is_continue', action="store_true", help='Training iterations')
+        self.parser.add_argument('--is_continue', action="store_true", help='Is this trail continued from previous trail?')
 
-        self.parser.add_argument('--log_every', type=int, default=50, help='Frequency of printing training progress')
-        self.parser.add_argument('--save_every_e', type=int, default=10, help='Frequency of printing training progress')
-        self.parser.add_argument('--eval_every_e', type=int, default=5, help='Frequency of printing training progress')
-        self.parser.add_argument('--save_latest', type=int, default=500, help='Frequency of printing training progress')
+        self.parser.add_argument('--log_every', type=int, default=50, help='Frequency of printing training progress (by iteration)')
+        self.parser.add_argument('--save_every_e', type=int, default=10, help='Frequency of saving models (by epoch)')
+        self.parser.add_argument('--eval_every_e', type=int, default=5, help='Frequency of animation results (by epoch)')
+        self.parser.add_argument('--save_latest', type=int, default=500, help='Frequency of saving models (by iteration)')
 
         self.is_train = True
 
@@ -41,12 +40,13 @@ class TrainDecompOptions():
         self.parser.add_argument('--dataset_name', type=str, default='kit', help='Dataset Name')
         self.parser.add_argument('--checkpoints_dir', type=str, default='./checkpoints', help='models are saved here')
 
-        self.parser.add_argument("--window_size", type=int, default=40, help="Length of motion")
+        self.parser.add_argument("--window_size", type=int, default=40, help="Length of motion clips for reconstruction")
 
-        self.parser.add_argument('--dim_movement_enc_hidden', type=int, default=512, help='Dimension of hidden unit in GRU')
-        self.parser.add_argument('--dim_movement_dec_hidden', type=int, default=512, help='Dimension of hidden unit in GRU')
-        self.parser.add_argument('--dim_movement2_dec_hidden', type=int, default=512, help='Dimension of hidden unit in GRU')
-        self.parser.add_argument('--dim_movement_latent', type=int, default=512, help='Dimension of hidden unit in GRU')
+        self.parser.add_argument('--dim_movement_enc_hidden', type=int, default=512,
+                                 help='Dimension of hidden in AutoEncoder(encoder)')
+        self.parser.add_argument('--dim_movement_dec_hidden', type=int, default=512,
+                                 help='Dimension of hidden in AutoEncoder(decoder)')
+        self.parser.add_argument('--dim_movement_latent', type=int, default=512, help='Dimension of motion snippet')
 
         self.parser.add_argument('--batch_size', type=int, default=128, help='Batch size')
 
@@ -107,8 +107,6 @@ class TrainLenEstOptions():
         self.opt.is_train = True
         args = vars(self.opt)
         return self.opt
-
-
 
 class TrainTexMotMatchOptions():
     def __init__(self):

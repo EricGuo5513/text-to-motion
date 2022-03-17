@@ -10,40 +10,37 @@ class BaseOptions():
 
     def initialize(self):
         self.parser.add_argument('--name', type=str, default="test", help='Name of this trial')
-        self.parser.add_argument('--decomp_name', type=str, default="Decomp_SP001_SM001_H512", help='Name of this trial')
+        self.parser.add_argument('--decomp_name', type=str, default="Decomp_SP001_SM001_H512", help='Name of autoencoder model')
 
         self.parser.add_argument("--gpu_id", type=int, default=-1,
                                  help='GPU id')
 
         self.parser.add_argument('--dataset_name', type=str, default='t2m', help='Dataset Name')
         self.parser.add_argument('--checkpoints_dir', type=str, default='./checkpoints', help='models are saved here')
-        self.parser.add_argument('--input_z', action="store_true", help='Training iterations')
 
-        self.parser.add_argument("--unit_length", type=int, default=4, help="Length of motion")
-        self.parser.add_argument("--max_text_len", type=int, default=20, help="Length of motion")
+        self.parser.add_argument("--unit_length", type=int, default=4, help="Motions are cropped to the maximum times of unit_length")
+        self.parser.add_argument("--max_text_len", type=int, default=20, help="Maximum length of text description")
 
         self.parser.add_argument('--text_enc_mod', type=str, default='bigru')
         self.parser.add_argument('--estimator_mod', type=str, default='bigru')
 
-        self.parser.add_argument('--dim_text_hidden', type=int, default=512, help='Dimension of hidden unit in GRU')
-        self.parser.add_argument('--dim_att_vec', type=int, default=512, help='Dimension of hidden unit in GRU')
-        self.parser.add_argument('--dim_z', type=int, default=128, help='Dimension of hidden unit in GRU')
+        self.parser.add_argument('--dim_text_hidden', type=int, default=512, help='Dimension of hidden unit in text encoder')
+        self.parser.add_argument('--dim_att_vec', type=int, default=512, help='Dimension of attention vector')
+        self.parser.add_argument('--dim_z', type=int, default=128, help='Dimension of latent Gaussian vector')
 
-        self.parser.add_argument('--n_layers_pri', type=int, default=1, help='Dimension of hidden unit in GRU')
-        self.parser.add_argument('--n_layers_pos', type=int, default=1, help='Dimension of hidden unit in GRU')
-        self.parser.add_argument('--n_layers_dec', type=int, default=1, help='Dimension of hidden unit in GRU')
+        self.parser.add_argument('--n_layers_pri', type=int, default=1, help='Number of layers in prior network')
+        self.parser.add_argument('--n_layers_pos', type=int, default=1, help='Number of layers in posterior network')
+        self.parser.add_argument('--n_layers_dec', type=int, default=1, help='Number of layers in generator')
 
-        self.parser.add_argument('--dim_pri_hidden', type=int, default=1024, help='Dimension of hidden unit in GRU')
-        self.parser.add_argument('--dim_pos_hidden', type=int, default=1024, help='Dimension of hidden unit in GRU')
-        self.parser.add_argument('--dim_dec_hidden', type=int, default=1024, help='Dimension of hidden unit in GRU')
+        self.parser.add_argument('--dim_pri_hidden', type=int, default=1024, help='Dimension of hidden unit in prior network')
+        self.parser.add_argument('--dim_pos_hidden', type=int, default=1024, help='Dimension of hidden unit in posterior network')
+        self.parser.add_argument('--dim_dec_hidden', type=int, default=1024, help='Dimension of hidden unit in generator')
 
         self.parser.add_argument('--dim_movement_enc_hidden', type=int, default=512,
-                                 help='Dimension of hidden unit in GRU')
+                                 help='Dimension of hidden in AutoEncoder(encoder)')
         self.parser.add_argument('--dim_movement_dec_hidden', type=int, default=512,
-                                 help='Dimension of hidden unit in GRU')
-        self.parser.add_argument('--dim_movement2_dec_hidden', type=int, default=512,
-                                 help='Dimension of hidden unit in GRU')
-        self.parser.add_argument('--dim_movement_latent', type=int, default=512, help='Dimension of hidden unit in GRU')
+                                 help='Dimension of hidden in AutoEncoder(decoder)')
+        self.parser.add_argument('--dim_movement_latent', type=int, default=512, help='Dimension of motion snippet')
 
         self.initialized = True
 

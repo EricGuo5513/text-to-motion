@@ -318,6 +318,7 @@ class Text2MotionDatasetV2(data.Dataset):
         pos_one_hots = np.concatenate(pos_one_hots, axis=0)
         word_embeddings = np.concatenate(word_embeddings, axis=0)
 
+        # Crop the motions in to times of 4, and introduce small variations
         if self.opt.unit_length < 10:
             coin2 = np.random.choice(['single', 'single', 'double'])
         else:
