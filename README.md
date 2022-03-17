@@ -36,7 +36,7 @@ If you cannot successfully create the environment, here is a list of required li
   
   **If you just want to play our pre-trained models, you don't need to download datasets.**
   ### Datasets
-  We are using two 3D human motion-language dataset: HumanML3D and KIT-ML. For both datasets, you could find the details as well as download link [here](https://github.com/EricGuoICT/HumanML3D).   
+  We are using two 3D human motion-language dataset: HumanML3D and KIT-ML. For both datasets, you could find the details as well as download link [[here]](https://github.com/EricGuoICT/HumanML3D).   
   Please note you don't need to clone that git repository, since all related codes have already been included in current git project.
   
   Download and unzip the dataset files -> Create a dataset folder -> Place related data files in dataset folder:
@@ -62,7 +62,7 @@ If you cannot successfully create the environment, here is a list of required li
   mkdir ./checkpoints
   ```
     
- #### Download models for HumanML3D from [here](https://drive.google.com/file/d/1DSaKqWX2HlwBtVH5l7DdW96jeYUIXsOP/view?usp=sharing). Unzip and place them under checkpoint directory, which should be like
+ #### Download models for HumanML3D from [[here]](https://drive.google.com/file/d/1DSaKqWX2HlwBtVH5l7DdW96jeYUIXsOP/view?usp=sharing). Unzip and place them under checkpoint directory, which should be like
 ```
 ./checkpoints/t2m/
 ./checkpoints/t2m/Comp_v6_KLD01/           # Text-to-motion generation model
@@ -70,7 +70,7 @@ If you cannot successfully create the environment, here is a list of required li
 ./checkpoints/t2m/length_est_bigru/        # Text-to-length sampling model
 ./checkpoints/t2m/text_mot_match/          # Motion & Text feature extractors for evaluation
  ```
- #### Download models for KIT-ML [here](https://drive.google.com/file/d/1tX79xk0fflp07EZ660Xz1RAFE33iEyJR/view?usp=sharing). Unzip and place them under checkpoint directory.
+ #### Download models for KIT-ML [[here]](https://drive.google.com/file/d/1tX79xk0fflp07EZ660Xz1RAFE33iEyJR/view?usp=sharing). Unzip and place them under checkpoint directory.
     
  ## Training Models
  
