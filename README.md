@@ -1,4 +1,4 @@
-# <B> Generating Diverse and Natural 3D Human Motions from Text (CVPR 2022)<b>
+# Generating Diverse and Natural 3D Human Motions from Text (CVPR 2022)
 ## [[Project Page]](https://github.com/EricGuo5513/text-to-motion/blob/main/docs/teaser_image.png) [[Paper]](https://github.com/EricGuo5513/text-to-motion/blob/main/docs/teaser_image.png)
 
 ![teaser_image](https://github.com/EricGuo5513/text-to-motion/blob/main/docs/teaser_image.png)
@@ -34,8 +34,8 @@ If you cannot successfully create the environment, here is a list of required li
   
   ## Download Data & Pre-trained Models
   
-  <b>If you just want to play our pre-trained models, you don't need to download datasets.<b>
-  ### <b> Datasets <b>
+  **If you just want to play our pre-trained models, you don't need to download datasets.**
+  ### Datasets
   We are using two 3D human motion-language dataset: HumanML3D and KIT-ML. For both datasets, you could find the details as well as download link [here](https://github.com/EricGuoICT/HumanML3D).   
   Please note you don't need to clone that git repository, since all related codes have already been included in this git project.
   
@@ -56,7 +56,7 @@ If you cannot successfully create the environment, here is a list of required li
   ./dataset/HumanML3D/train_val.txt
   ./dataset/HumanML3D/val.txt    
   ```
- ### <b> Pre-trained Models <b>
+ ### Pre-trained Models
   Create a checkpoint folder to place pre-traine models:
   ```sh
   mkdir ./checkpoints
@@ -70,11 +70,67 @@ If you cannot successfully create the environment, here is a list of required li
 ./checkpoints/t2m/length_est_bigru/        # Text-to-length sampling model
 ./checkpoints/t2m/text_mot_match/          # Motion & Text feature extractors for evaluation
  ```
- #### Download models for KIT-ML [here](https://drive.google.com/file/d/1tX79xk0fflp07EZ660Xz1RAFE33iEyJR/view?usp=sharing)
+ #### Download models for KIT-ML [here](https://drive.google.com/file/d/1tX79xk0fflp07EZ660Xz1RAFE33iEyJR/view?usp=sharing). Unzip and place them under checkpoint directory.
     
- ## Training
-    
-    
- ## Testing
-    
+ ## Training Models
  
+ All intermediate meta files/animations/models will be saved to checkpoint directory under the folder specified by argument "--name".
+ ### Training motion autoencoder
+ #### HumanML3D
+```sh
+python train_decomp_v3.py --name Decomp_SP001_SM001_H512 --gpu_id 0 --window_size 24 --dataset_name t2m
+```
+#### KIT-ML
+```sh
+python train_decomp_v3.py --name Decomp_SP001_SM001_H512 --gpu_id 0 --window_size 24 --dataset_name kit
+```
+
+### Train text2length model:
+#### HumanML3D
+```sh
+python train_length_est.py --name length_est_bigru --gpu_id 0 --dataset_name t2m
+```
+#### KIT-ML
+```sh
+python train_length_est.py --name length_est_bigru --gpu_id 0 --dataset_name kit
+```
+### Training text2motion model:
+#### HumanML3D
+```sh
+python train_comp_v6.py --name Comp_v6_KLD01 --gpu_id 0 --lambda_kld 0.01 --dataset_name t2m
+```
+#### KIT-ML
+```sh
+python train_comp_v6.py --name Comp_v6_KLD005 --gpu_id 0 --lambda_kld 0.005 --dataset_name kit
+```
+### Training motion & text feature extractors:
+#### HumanML3D
+```sh
+python train_tex_mot_match.py --name text_mot_match --gpu_id 1 --batch_size 8 --dataset_name t2m
+```
+#### KIT-ML
+```sh
+python train_tex_mot_match.py --name text_mot_match --gpu_id 1 --batch_size 8 --dataset_name kit
+```
+    
+## Generating and Animating 3D Motions (HumanML3D)
+#### Sampling results from test sets
+```sh
+python eval_comp_v6.py --name Comp_v6_KLD01 --est_length --repeat_time 3 --num_results 10 --ext default --gpu_id 1
+```
+where *--est_length* asks the model to use sampled motion lengths for generation, *--repeat_time* gives how many sampling rounds are required for each description. This script will results in 3x10 animations under directory *./eval_results/t2m/Comp_v6_KLD01/default/*.
+
+#### Sampling results from customized descriptions
+```sh
+python gen_motion_script.py --name Comp_v6_KLD01 --text_file input.txt --repeat_time 3 --ext customized --gpu_id 1
+```
+This will generate 3 animated motions for each description given in text_file *./input.txt*.
+
+## Quantitative Evaluations
+```sh
+python final_evaluation.py 
+```
+This will evaluate the model performance on HumanML3D dataset by default. You could also run on KIT-ML dataset by uncommenting certain lines in *./final_evaluation.py*. The statistical results will saved to *./t2m_evaluation.log*.
+
+### Misc
+ Contact Chuan Guo at cguo2@ualberta.ca for any questions or comments.
