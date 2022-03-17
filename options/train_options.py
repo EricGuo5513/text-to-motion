@@ -57,8 +57,6 @@ class TrainDecompOptions():
         self.parser.add_argument('--lambda_sparsity', type=float, default=0.001, help='Layers of GRU')
         self.parser.add_argument('--lambda_smooth', type=float, default=0.001, help='Layers of GRU')
 
-        self.parser.add_argument('--lambda_kld', type=float, default=0.01, help='Layers of GRU')
-
         self.parser.add_argument('--lr', type=float, default=1e-4, help='Layers of GRU')
 
         self.parser.add_argument('--is_continue', action="store_true", help='Training iterations')

@@ -41,11 +41,6 @@ def build_models(opt):
                                         hidden_size=opt.dim_text_hidden,
                                         device=opt.device)
         text_size = opt.dim_text_hidden * 2
-    elif opt.text_enc_mod == 'transformer':
-        text_encoder = TextEncoderTransformer(word_size=dim_word,
-                                              pos_size=dim_pos_ohot,
-                                              d_model=opt.dim_text_hidden)
-        text_size = opt.dim_text_hidden
     else:
         raise Exception("Text Encoder Mode not Recognized!!!")
 
@@ -95,7 +90,7 @@ if __name__ == '__main__':
     os.makedirs(opt.animation_dir, exist_ok=True)
 
     if opt.dataset_name == 't2m':
-        opt.data_root = './dataset/pose_data_raw'
+        opt.data_root = './dataset/HumanML3D'
         opt.motion_dir = pjoin(opt.data_root, 'new_joint_vecs')
         opt.text_dir = pjoin(opt.data_root, 'texts')
         opt.joints_num = 22
@@ -199,7 +194,7 @@ if __name__ == '__main__':
         for t in range(opt.repeat_times):
             sub_dict = item['result_%02d'%t]
             motion = sub_dict['motion']
-            att_wgts = sub_dict['att_wgts']
+            # att_wgts = sub_dict['att_wgts']
             np.save(pjoin(joint_save_path, 'gen_motion_%02d_L%03d.npy' % (t, motion.shape[1])), motion)
-            np.save(pjoin(joint_save_path, 'att_wgt_%02d_L%03d.npy' % (t, motion.shape[1])), att_wgts)
+            # np.save(pjoin(joint_save_path, 'att_wgt_%02d_L%03d.npy' % (t, motion.shape[1])), att_wgts)
             plot_t2m(motion, pjoin(animation_save_path, 'gen_motion_%02d_L%03d' % (t, motion.shape[1])), captions)

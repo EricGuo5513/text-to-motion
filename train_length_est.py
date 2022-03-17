@@ -29,13 +29,13 @@ if __name__ == '__main__':
     os.makedirs(opt.log_dir, exist_ok=True)
 
     if opt.dataset_name == 't2m':
-        opt.data_root = './dataset/pose_data_raw'
+        opt.data_root = './dataset/HumanML3D'
         opt.motion_dir = pjoin(opt.data_root, 'new_joint_vecs')
         opt.text_dir = pjoin(opt.data_root, 'texts')
         opt.joints_num = 22
         dim_pose = 263
     elif opt.dataset_name == 'kit':
-        opt.data_root = './dataset/kit_mocap_dataset'
+        opt.data_root = './dataset/KIT-ML'
         opt.motion_dir = pjoin(opt.data_root, 'new_joint_vecs')
         opt.text_dir = pjoin(opt.data_root, 'texts')
         opt.joints_num = 21
@@ -56,8 +56,6 @@ if __name__ == '__main__':
 
     if opt.estimator_mod == 'bigru':
         estimator = MotionLenEstimatorBiGRU(dim_word, dim_pos_ohot, 512, num_classes)
-    elif opt.estimator_mod == 'transformer':
-        estimator = MotionLenEstimatorTransformer(dim_word, dim_pos_ohot, 512, num_classes)
     else:
         raise Exception('Estimator Mode is not Recognized!!!')
 

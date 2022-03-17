@@ -270,105 +270,27 @@ def animation_4_user_study(save_dir):
 
 
 if __name__ == '__main__':
-    dataset_opt_path = './checkpoints/t2m/Comp_v6_KLD005/opt.txt'
+    # dataset_opt_path = './checkpoints/kit/Comp_v6_KLD005/opt.txt'
+    dataset_opt_path = './checkpoints/t2m/Comp_v6_KLD01/opt.txt'
     eval_motion_loaders = {
-        # 'Comp_v5_KLD005': lambda: get_motion_loader(
-        #     './checkpoints/t2m/Comp_v5_KLD005/opt.txt',
-        #     batch_size, gt_dataset, mm_num_samples, mm_num_repeats, device
-        # ),
-        # 'Comp_v6_KLD005_wo_Att': lambda: get_motion_loader(
-        #     './checkpoints/t2m/Comp_v6_KLD005_wo_Att/opt.txt',
-        #     batch_size, gt_dataset, mm_num_samples, mm_num_repeats, device
-        # ),
-        # 'Comp_v6_KLD005_wo_PoS': lambda: get_motion_loader(
-        #     './checkpoints/t2m/Comp_v6_KLD005_wo_PoS/opt.txt',
-        #     batch_size, gt_dataset, mm_num_samples, mm_num_repeats, device
-        # ),
-        'Comp_v6_KLD005_Bert': lambda: get_motion_loader(
-            './checkpoints/t2m/Comp_v6_KLD005_Bert/opt.txt',
+        ################
+        ## HumanML3D Dataset##
+        ################
+        'Comp_v6_KLD01': lambda: get_motion_loader(
+            './checkpoints/t2m/Comp_v6_KLD01/opt.txt',
             batch_size, gt_dataset, mm_num_samples, mm_num_repeats, device
-        ),
-
-
-        # 'Comp_v6_KLD005': lambda: get_motion_loader(
-        #     './checkpoints/t2m/Comp_v6_KLD005/opt.txt',
-        #     batch_size, gt_dataset, mm_num_samples, mm_num_repeats, device
-        # ),
-        # 'Comp_v6_KLD001': lambda: get_motion_loader(
-        #     './checkpoints/t2m/Comp_v6_KLD001/opt.txt',
-        #     batch_size, gt_dataset, mm_num_samples, mm_num_repeats, device
-        # ),
-        # 'Comp_v6_KLD01': lambda: get_motion_loader(
-        #     './checkpoints/t2m/Comp_v6_KLD01/opt.txt',
-        #     batch_size, gt_dataset, mm_num_samples, mm_num_repeats, device
-        # ),
-        # 'Baseline2018': lambda: get_motion_loader(
-        #     './checkpoints/t2m/b_2018/opt.txt',
-        #     batch_size, gt_dataset, mm_num_samples, mm_num_repeats, device
-        # ),
-        # 'Language2Pose': lambda: get_motion_loader(
-        #     './checkpoints/t2m/b_language2pose/opt.txt',
-        #     batch_size, gt_dataset, mm_num_samples, mm_num_repeats, device
-        # ),
-        # 'MoCoGAN': lambda: get_motion_loader(
-        #     './checkpoints/t2m/b_mocogan/opt.txt',
-        #     batch_size, gt_dataset, mm_num_samples, mm_num_repeats, device
-        # ),
-        'Dancing2Music': lambda: get_motion_loader(
-            './checkpoints/t2m/b_dancing2music/opt.txt',
-            batch_size, gt_dataset, mm_num_samples, mm_num_repeats, device
-        ),
-        # 'Text2Gesture': lambda: get_motion_loader(
-        #     './checkpoints/t2m/b_text2gesture/opt.txt',
-        #     batch_size, gt_dataset, mm_num_samples, mm_num_repeats, device
-        # ),
-        # 'Hier': lambda: get_motion_loader(
-        #     './checkpoints/t2m/b_hier_no_adv/opt.txt',
-        #     batch_size, gt_dataset, mm_num_samples, mm_num_repeats, device
-        # )
+        )
 
         ################
         ## KIT Dataset##
         ################
-        # 'Comp_v6_KLD005_gt_len': lambda: get_motion_loader(
+        # 'Comp_v6_KLD005': lambda: get_motion_loader(
         #     './checkpoints/kit/Comp_v6_KLD005/opt.txt',
         #     batch_size, gt_dataset, mm_num_samples, mm_num_repeats, device
         # ),
-        # 'Comp_v6_KLD001': lambda: get_motion_loader(
-        #     './checkpoints/t2m/Comp_v6_KLD001/opt.txt',
-        #     batch_size, gt_dataset, mm_num_samples, mm_num_repeats, device
-        # ),
-        # 'Comp_v6_KLD01': lambda: get_motion_loader(
-        #     './checkpoints/kit/Comp_v6_KLD01/opt.txt',
-        #     batch_size, gt_dataset, mm_num_samples, mm_num_repeats, device
-        # ),
-        # 'Baseline2018': lambda: get_motion_loader(
-        #     './checkpoints/kit/b_2018/opt.txt',
-        #     batch_size, gt_dataset, mm_num_samples, mm_num_repeats, device
-        # ),
-        # 'Language2Pose': lambda: get_motion_loader(
-        #     './checkpoints/kit/b_language2pose/opt.txt',
-        #     batch_size, gt_dataset, mm_num_samples, mm_num_repeats, device
-        # ),
-        # 'MoCoGAN': lambda: get_motion_loader(
-        #     './checkpoints/kit/b_mocogan/opt.txt',
-        #     batch_size, gt_dataset, mm_num_samples, mm_num_repeats, device
-        # ),
-        # 'Dancing2Music': lambda: get_motion_loader(
-        #     './checkpoints/kit/b_dancing2music/opt.txt',
-        #     batch_size, gt_dataset, mm_num_samples, mm_num_repeats, device
-        # ),
-        # 'Text2Gesture': lambda: get_motion_loader(
-        #     './checkpoints/kit/b_text2gesture/opt.txt',
-        #     batch_size, gt_dataset, mm_num_samples, mm_num_repeats, device
-        # )
-        # 'Hier': lambda: get_motion_loader(
-        #     './checkpoints/kit/b_hier_no_adv/opt.txt',
-        #     batch_size, gt_dataset, mm_num_samples, mm_num_repeats, device
-        # )
     }
 
-    device_id = 2
+    device_id = 3
     device = torch.device('cuda:%d'%device_id if torch.cuda.is_available() else 'cpu')
     torch.cuda.set_device(device_id)
 
@@ -392,6 +314,6 @@ if __name__ == '__main__':
     wrapper_opt = get_opt(dataset_opt_path, device)
     eval_wrapper = EvaluatorModelWrapper(wrapper_opt)
 
-    log_file = './final_logs/t2m_evaluation_iccv2021.log'
+    log_file = './t2m_evaluation.log'
     evaluation(log_file)
     # animation_4_user_study('./user_study_t2m/')

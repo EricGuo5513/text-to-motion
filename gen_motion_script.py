@@ -20,8 +20,8 @@ def plot_t2m(data, save_dir, captions):
     for i, (caption, joint_data) in enumerate(zip(captions, data)):
         joint = recover_from_ric(torch.from_numpy(joint_data).float(), opt.joints_num).numpy()
         save_path = '%s_%02d'%(save_dir, i)
-        np.save(save_path + '.npy', joint)
-        plot_3d_motion(save_path + '.mp4', paramUtil.t2m_kinematic_chain, joint, title=caption, fps=20)
+        # np.save(save_path + '.npy', joint)
+        # plot_3d_motion(save_path + '.mp4', paramUtil.t2m_kinematic_chain, joint, title=caption, fps=20)
 
         joint = motion_temporal_filter(joint, sigma=1)
         np.save(save_path + '_a.npy', joint)
@@ -46,11 +46,6 @@ def build_models(opt):
                                         hidden_size=opt.dim_text_hidden,
                                         device=opt.device)
         text_size = opt.dim_text_hidden * 2
-    elif opt.text_enc_mod == 'transformer':
-        text_encoder = TextEncoderTransformer(word_size=dim_word,
-                                              pos_size=dim_pos_ohot,
-                                              d_model=opt.dim_text_hidden)
-        text_size = opt.dim_text_hidden
     else:
         raise Exception("Text Encoder Mode not Recognized!!!")
 
@@ -100,7 +95,7 @@ if __name__ == '__main__':
     os.makedirs(opt.animation_dir, exist_ok=True)
 
     if opt.dataset_name == 't2m':
-        opt.data_root = './dataset/pose_data_raw'
+        opt.data_root = './dataset/HumanML3D'
         opt.motion_dir = pjoin(opt.data_root, 'new_joint_vecs')
         opt.text_dir = pjoin(opt.data_root, 'texts')
         opt.joints_num = 22
@@ -135,12 +130,12 @@ if __name__ == '__main__':
     # mov_enc.to(opt.device)
     # mov2_dec.to(opt.device)
 
-    if opt.est_length:
-        estimator = MotionLenEstimatorBiGRU(dim_word, dim_pos_ohot, 512, num_classes)
-        checkpoints = torch.load(pjoin(opt.checkpoints_dir, opt.dataset_name, 'length_est_bigru', 'model', 'latest.tar'))
-        estimator.load_state_dict(checkpoints['estimator'])
-        estimator.to(opt.device)
-        estimator.eval()
+    # if opt.est_length:
+    estimator = MotionLenEstimatorBiGRU(dim_word, dim_pos_ohot, 512, num_classes)
+    checkpoints = torch.load(pjoin(opt.checkpoints_dir, opt.dataset_name, 'length_est_bigru', 'model', 'latest.tar'))
+    estimator.load_state_dict(checkpoints['estimator'])
+    estimator.to(opt.device)
+    estimator.eval()
 
     data_loader = DataLoader(dataset, batch_size=1, drop_last=True, num_workers=1)
 
@@ -149,19 +144,18 @@ if __name__ == '__main__':
     result_dict = {}
     with torch.no_grad():
         for i, data in enumerate(data_loader):
-            print('%02d_%03d'%(i, opt.num_results))
+            print('%02d_%03d'%(i, len(data_loader)))
             word_emb, pos_ohot, caption, cap_lens = data
             name = 'C%03d'%(i)
             item_dict = {'caption': caption}
             print(caption)
 
-            if opt.est_length:
-                word_emb, pos_ohot, caption, cap_lens = data
-                word_emb = word_emb.detach().to(opt.device).float()
-                pos_ohot = pos_ohot.detach().to(opt.device).float()
+            word_emb, pos_ohot, caption, cap_lens = data
+            word_emb = word_emb.detach().to(opt.device).float()
+            pos_ohot = pos_ohot.detach().to(opt.device).float()
 
-                pred_dis = estimator(word_emb, pos_ohot, cap_lens)
-                pred_dis = nn.Softmax(-1)(pred_dis).squeeze()
+            pred_dis = estimator(word_emb, pos_ohot, cap_lens)
+            pred_dis = nn.Softmax(-1)(pred_dis).squeeze()
 
                 # pred_dis_np = pred_dis.cpu().numpy()
                 # max_idxs = pred_dis_np.argsort()[-5:][::-1]
@@ -171,10 +165,9 @@ if __name__ == '__main__':
                 # print(m_lens[0] // opt.unit_length)
 
             for t in range(opt.repeat_times):
-                if opt.est_length:
-                    length = torch.multinomial(pred_dis, 1)
-                    # print(length.item())
-                    m_lens = length * opt.unit_length
+                length = torch.multinomial(pred_dis, 1)
+                # print(length.item())
+                m_lens = length * opt.unit_length
                 pred_motions, _, att_wgts = trainer.generate(word_emb, pos_ohot, cap_lens, m_lens, m_lens[0]//opt.unit_length, dim_pose)
                 # trainer.forward(data, 0, m_lens[0]//opt.unit_length)
                 # pred_motions = trainer.pred_motions.view(opt.batch_size, m_lens[0], -1)
@@ -189,7 +182,7 @@ if __name__ == '__main__':
     print('Animation Results')
     '''Animate Results'''
     for i, (key, item) in enumerate(result_dict.items()):
-        print('%02d_%03d'%(i, opt.num_results))
+        print('%02d_%03d'%(i, len(result_dict)))
         captions = item['caption']
         joint_save_path = pjoin(opt.joint_dir, key)
         animation_save_path = pjoin(opt.animation_dir, key)
@@ -200,5 +193,5 @@ if __name__ == '__main__':
             motion = sub_dict['motion']
             att_wgts = sub_dict['att_wgts']
             np.save(pjoin(joint_save_path, 'gen_motion_%02d_L%03d.npy' % (t, motion.shape[1])), motion)
-            np.save(pjoin(joint_save_path, 'att_wgt_%02d_L%03d.npy' % (t, motion.shape[1])), att_wgts)
+            # np.save(pjoin(joint_save_path, 'att_wgt_%02d_L%03d.npy' % (t, motion.shape[1])), att_wgts)
             plot_t2m(motion, pjoin(animation_save_path, 'gen_motion_%02d_L%03d' % (t, motion.shape[1])), captions)

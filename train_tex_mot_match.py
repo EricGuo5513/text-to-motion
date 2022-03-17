@@ -50,15 +50,16 @@ if __name__ == '__main__':
     os.makedirs(opt.log_dir, exist_ok=True)
 
     if opt.dataset_name == 't2m':
-        opt.data_root = './dataset/pose_data_raw'
+        opt.data_root = './dataset/HumanML3D'
         opt.motion_dir = pjoin(opt.data_root, 'new_joint_vecs')
         opt.text_dir = pjoin(opt.data_root, 'texts')
         opt.joints_num = 22
         opt.max_motion_length = 196
         dim_pose = 263
         num_classes = 200 // opt.unit_length
+        meta_root = pjoin(opt.checkpoints_dir, opt.dataset_name, 'Comp_v6_KLD01', 'meta')
     elif opt.dataset_name == 'kit':
-        opt.data_root = './dataset/kit_mocap_dataset'
+        opt.data_root = './dataset/KIT-ML'
         opt.motion_dir = pjoin(opt.data_root, 'new_joint_vecs')
         opt.text_dir = pjoin(opt.data_root, 'texts')
         opt.joints_num = 21
@@ -67,14 +68,15 @@ if __name__ == '__main__':
         dim_pose = 251
         opt.max_motion_length = 196
         num_classes = 200 // opt.unit_length
+        meta_root = pjoin(opt.checkpoints_dir, opt.dataset_name, 'Comp_v6_KLD005', 'meta')
     else:
         raise KeyError('Dataset Does Not Exist')
 
     dim_word = 300
     dim_pos_ohot = len(POS_enumerator)
 
-    mean = np.load(pjoin(opt.checkpoints_dir, opt.dataset_name, 'Comp_v6_KLD005', 'meta', 'mean.npy'))
-    std = np.load(pjoin(opt.checkpoints_dir, opt.dataset_name, 'Comp_v6_KLD005', 'meta', 'std.npy'))
+    mean = np.load(pjoin(meta_root, 'mean.npy'))
+    std = np.load(pjoin(meta_root, 'std.npy'))
 
     w_vectorizer = WordVectorizer('./glove', 'our_vab')
     train_split_file = pjoin(opt.data_root, 'train.txt')

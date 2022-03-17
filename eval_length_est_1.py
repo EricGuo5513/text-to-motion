@@ -28,7 +28,7 @@ if __name__ == '__main__':
     opt.text_file = "./dataset/input_est.txt"
 
     if opt.dataset_name == 't2m':
-        opt.data_root = './dataset/pose_data_raw'
+        opt.data_root = './dataset/HumanML3D'
         opt.motion_dir = pjoin(opt.data_root, 'new_joint_vecs')
         opt.text_dir = pjoin(opt.data_root, 'texts')
         opt.joints_num = 22
@@ -48,8 +48,6 @@ if __name__ == '__main__':
 
     if opt.estimator_mod == 'bigru':
         estimator = MotionLenEstimatorBiGRU(dim_word, dim_pos_ohot, 512, num_classes)
-    elif opt.estimator_mod == 'transformer':
-        estimator = MotionLenEstimatorTransformer(dim_word, dim_pos_ohot, 512, num_classes)
     else:
         raise Exception('Estimator Mode is not Recognized!!!')
 

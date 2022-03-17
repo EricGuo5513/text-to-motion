@@ -15,7 +15,6 @@ class BaseOptions():
         self.parser.add_argument("--gpu_id", type=int, default=-1,
                                  help='GPU id')
 
-
         self.parser.add_argument('--dataset_name', type=str, default='t2m', help='Dataset Name')
         self.parser.add_argument('--checkpoints_dir', type=str, default='./checkpoints', help='models are saved here')
         self.parser.add_argument('--input_z', action="store_true", help='Training iterations')
@@ -45,8 +44,6 @@ class BaseOptions():
         self.parser.add_argument('--dim_movement2_dec_hidden', type=int, default=512,
                                  help='Dimension of hidden unit in GRU')
         self.parser.add_argument('--dim_movement_latent', type=int, default=512, help='Dimension of hidden unit in GRU')
-
-        self.parser.add_argument('--num_experts', type=int, default=4, help='Dimension of hidden unit in GRU')
 
         self.initialized = True
 
