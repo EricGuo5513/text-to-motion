@@ -36,7 +36,7 @@ If you cannot successfully create the environment, here is a list of required li
   
   **If you just want to play our pre-trained models, you don't need to download datasets.**
   ### Datasets
-  We are using two 3D human motion-language dataset: HumanML3D and KIT-ML. For both datasets, you could find the details as well as download link [[here]](https://github.com/EricGuoICT/HumanML3D).   
+  We are using two 3D human motion-language dataset: HumanML3D and KIT-ML. For both datasets, you could find the details as well as download link [[here]](https://github.com/EricGuo5513/HumanML3D).   
   Please note you don't need to clone that git repository, since all related codes have already been included in current git project.
   
   Download and unzip the dataset files -> Create a dataset folder -> Place related data files in dataset folder:
