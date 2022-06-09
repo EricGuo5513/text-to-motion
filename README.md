@@ -1,5 +1,5 @@
 # Generating Diverse and Natural 3D Human Motions from Text (CVPR 2022)
-## [[Project Page]](https://github.com/EricGuo5513/text-to-motion/blob/main/docs/teaser_image.png) [[Paper]](https://github.com/EricGuo5513/text-to-motion/blob/main/docs/teaser_image.png)
+## [[Project Page]]([https://github.com/EricGuo5513/text-to-motion/blob/main/docs/teaser_image.png](https://ericguo5513.github.io/text-to-motion/)) [[Paper]](https://github.com/EricGuo5513/text-to-motion/blob/main/docs/teaser_image.png)
 
 ![teaser_image](https://github.com/EricGuo5513/text-to-motion/blob/main/docs/teaser_image.png)
   
