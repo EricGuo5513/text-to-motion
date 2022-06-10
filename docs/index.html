@@ -203,9 +203,9 @@
 		</center>
 		</td>
 
-		<td align=center width=50px>
+		<td align=center width=100px>
 		<center>
-		<span style="font-size:18px"><a href="https://openaccess.thecvf.com/content/CVPR2022/papers/Guo_Generating_Diverse_and_Natural_3D_Human_Motions_From_Text_CVPR_2022_paper.pdf">[Paper]</a></span>
+		<span style="font-size:18px">CVPR 2022 <a href="https://openaccess.thecvf.com/content/CVPR2022/papers/Guo_Generating_Diverse_and_Natural_3D_Human_Motions_From_Text_CVPR_2022_paper.pdf">[Paper]</a></span>
 		</center>
 		</td>
 		
@@ -222,7 +222,7 @@
   			  <tr>
   	              <td width=600px>
   					<center>
-  	                	<a href="./website/teaser.png"><img src = "./teaser_image.png" height="300px"></img></href></a><br>
+  	                	<a href="./website/teaser.png"><img src = "./teaser_image.png" height="250px"></img></href></a><br>
 					</center>
   	              </td>
   	          </tr>
@@ -241,7 +241,7 @@
 	 		<center><h1>Paper</h1></center>
   			  <tr>
   			  		<td width=50px align=left></td>
-				  <td><a href="https://openaccess.thecvf.com/content/CVPR2022/papers/Guo_Generating_Diverse_and_Natural_3D_Human_Motions_From_Text_CVPR_2022_paper.pdf"><img style="height:180px" src="./website/paper.png"/></a></td>
+				  <td><a href="https://openaccess.thecvf.com/content/CVPR2022/papers/Guo_Generating_Diverse_and_Natural_3D_Human_Motions_From_Text_CVPR_2022_paper.pdf"><img style="height:180px" src="./cvpr_paper.png"/></a></td>
 				  <td width=10px align=left></td>
 				  <td><span style="font-size:14pt">Generating Diverse and Natural 3D Human Motions from Texts<br>
                           <i>Chuan Guo, Shihao Zou, Xinxin Zuo, Sen Wang, Wei Ji, Xingyu Li, Li Cheng</i><br>
@@ -265,7 +265,7 @@
 				<tr height="600px">
 					<td valign="top" width=1000px>
 					<center>
-						<iframe width="1000" height="600" src="https://www.youtube.com/embed/eDzN3mhNdeo" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>					
+						<iframe width="1000" height="600" src="https://www.youtube.com/embed/085mBtMeZpg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>			
 					</center>
 					</td>
 				</tr>
@@ -279,65 +279,17 @@
 	</td>
 	</div>
 
-		 <!-- <table align=center width=550px> -->
-	 	<div id='data'>
-	 		<center><h1>Data</h1></center>
-	 		Our work engages three human motion datasets. Firstly, our own in-house dataset HumanAct12 is built with both coarse-grained and fine-grained action categories; other two existing datasets(i.e. NTU-RGB, CMU Mocap) are adjusted to better fit our purpose. If you're using our dataset, we'd appreciate your citation of our <a href="./website/bibtex.txt"> work</a>
-  		  	
-  		  	<table align=center width=1000>
-	 			<center><h3>HumanAct12</h3></center>
-	 	  		<tr>
-	  			  	<td width='400px'>
-	  			  	<p style="text-align:justify">
-	  	              HumanAct12 is adopted from the polar image and 3D pose dataset <a href="https://jimmyzou.github.io/publication/2020-PHSPDataset"> PHSPD</a>, with proper temporal cropping and action annotating. Statistically, there are 1191 3D motion clips(and 90,099 poses in total) which are categorized into 12 action classes, and 34 fine-grained sub-classes. The action types includes our daily actions such as <i>walk, run, sit down, jump up, warm up, </i>etc. Fine-grained action types contain more specifical information like <i>Warm up by bowing left side, Warm up by pressing left leg, etc</i>. The detailed statistics of HumanAct12 could be referred to our paper or documents in the dataset link. Our dataset also is registered with PHSPD dataset, in case one also needs extra meta-source(e.g. polar image, depth image, color image, etc); please see the <i>ReadMe</i> file for detailed registration information. If you're only intereted in 3d joints and action annoataion of human motion, you could just download our dataset <a href="https://drive.google.com/drive/folders/1hGNkxI9jPbdFueUHfj8H8zC2f7DTb8NG?usp=sharing"> here</a>. If you require more dedicated data modality, you may consider <a href="https://jimmyzou.github.io/publication/2020-PHSPDataset"> PHSPD</a> as well. 
-	  	          	</p>
-					</td>
-					<br>
-	            </tr>
-	        </table>
-
-	        <table align=center width=1000> 
-				<center><h3>Refined NTU-RGBD</h3></center>
-	          	<tr>
-				  	<td width='400px'>
-				  	<p style="text-align:justify">
-		              Due to the inaccuracy of 3D joint annoations in original NTU-RGBD dataset, we re-estimate the 3D positions of poses from the point cloud extratcted from rough RGBD videos, by the  recently proposed method <a href="https://github.com/mkocabas/VIBE"> "video inference for human body pose and shape estimation(CVPR 2020)" </a>. Note this dataset is only partial of NTU-RGBD dataset, which contains 13 distinct acition types(e.g. cheer up, pick up, salute, etc.) constituting 3,902 motion clips. We kept the name of each motion as origin. Due to the <font color="blue">Release Agreement</font> of NTU-RGBD dataset, we are not allowed to and will no longer provide the access to our re-estimated NTU-RGBD data.</a>
-		          	</p>
-					</td>
-					<br>
-	          	</tr>
-	        </table>
-
-
-	        
-	        <table align=center width=1000> 
-	        	<center><h3>CMU Mocap</h3></center>
-   	            <tr>
-				  	<td width='400px'>
-				  	<p style="text-align:justify">
-		              The original CMU Mocap dataset is not orgnized by action types. Based on their motion descriptions, we identify 8 disparate actions, including running, walking, jumping, climbing, and manually re-organize 1,088 motions. Here each skeleton is annotated with 20 3D joints (19 bones). In practice, the pose sequences are down-sampled to a frequency of 12 HZ from 100 HZ. Download <a href="https://drive.google.com/drive/folders/1_2jbZK48Li6sm1duNJnR_eyQjVdJQDoU?usp=sharing"> here</a>
-		          	</p>
-					</td>
-					<br>
-	            </tr>
-	        </table>
-  		 </div>
-		  <br>
-
-
-		<hr>
-
 	<div id='code'>
 		<center><h1>Try Our Code</h1></center>
-  		  <table align=center width=1100>
+  		  <table align=center width=900>
 			<tr><center>
-                          <a href='https://github.com/EricGuo5513/action-to-motion'><img class="round" style="height:400" src="./website/Architecture.jpg"/></a>
+                          <a href='https://github.com/EricGuo5513/text-to-motion'><img class="round" style="height:400" src="./model.png"/></a>
                         </center></tr>
           	  </table>
 
     	  <table align=center width=800px>
       		<tr><center> <br>
-        	<span style="font-size:28px">&nbsp;<a href='https://github.com/EricGuo5513/action-to-motion'>[GitHub]</a>
+        	<span style="font-size:28px">&nbsp;<a href='https://github.com/EricGuo5513/text-to-motion'>[GitHub]</a>
           
         	<span style="font-size:28px"></a></span>
       		<br>
@@ -346,88 +298,6 @@
 	 		
   			  	
   		 </div>
-		  <br>
-
-
-		<hr>
-
-  		 
-	<div id='visual results'>
-		<center><h1>Visual Results</h1></center>
-  		  <table align=center width=1100>
-	 		  <tr> 
-	 		  	<td width="100px">
-	 		  	</td>
-	 		  	<td width="50px">
-	 		  		<h3>Phone</h3>
-	 		  	</td>
-	 		  	<td width="900px">
-	 		  		<center>
-	 		  			<img style="height:300" src="./website/phone2.gif"/>
-	 		  			<img style="height:300" src="./website/phone.gif"/>
-	 		  			<img style="height:300" src="./website/phone3.gif"/>
-	 		  		</center>	
-	 		  	</td>
-	 		  </tr>
-  			  	
-  		  </table>
-
-  		  <table align=center width=1100>
-	 		  <tr> 
-	 		  	<td width="100px">
-	 		  	</td>
-	 		  	<td width="50px">
-	 		  		<h3>Throw</h3>
-	 		  	</td>
-	 		  	<td width="900px">
-	 		  		<center>
-	 		  			<img style="height:300" src="./website/throw1.gif"/>
-	 		  			<img style="height:300" src="./website/throw2.gif"/>
-	 		  			<img style="height:300" src="./website/throw3.gif"/>
-	 		  		</center>	
-	 		  	</td>
-	 		  </tr>
-  			  	
-  		  </table>
-
-  		  <table align=center width=1100>
-	 		  <tr> 
-	 		  	<td width="100px">
-	 		  	</td>
-	 		  	<td width="50px">
-	 		  		<h3>Jump</h3>
-	 		  	</td>
-	 		  	<td width="900px">
-	 		  		<center>
-	 		  			<img style="height:300" src="./website/jump1.gif"/>
-	 		  			<img style="height:300" src="./website/jump3.gif"/>
-	 		  			<img style="height:300" src="./website/jump2.gif"/>
-	 		  		</center>	
-	 		  	</td>
-	 		  </tr>
-  			  	
-  		  </table>
-
-  		<center><h3>Motions with Different Scales</h3></center>
-
-  		<table align=center width=1100>
-	 		  <tr> 
-	 		  	<td width="100px">
-	 		  	</td>
-	 		  	<td width="50px">
-	 		  		<h3>Jump</h3>
-	 		  	</td>
-	 		  	<td width="900px">
-	 		  		<center>
-	 		  			<img style="height:300" src="./website/jump_1.gif"/>
-	 		  			<img style="height:300" src="./website/jump_2.gif"/>
-	 		  			<img style="height:300" src="./website/jump_3.gif"/>
-	 		  		</center>	
-	 		  	</td>
-	 		  </tr>
-  			  	
-  		  </table>
-  	</div>
 
   		 <br>
   		 <hr>
@@ -436,18 +306,12 @@
   	              <td>
   					<left>
 	  		  <center><h1>Acknowledgements</h1></center>
-	  		  This work is supported by the University of Alberta Start-up grant, the NSERC Discovery Grants including No. RGPIN-2019-04575, and the University of Alberta-Huawei Joint Innovation Collaboration grants.  This webpage template was borrowed from <a href="https://richzhang.github.io/colorization/">here</a>.
+	  		    This research was partly supported by the University of Alberta Start-up Grant, the UAHJIC Grants, and the NSERC Discovery Grants (No. RGPIN-2019-04575). This webpage template was borrowed from <a href="https://richzhang.github.io/colorization/">here</a>.
 
 			</left>
 				</td>
 			</tr>
 		</table>
-		<br><br>
 
-		<hr>
-		<p class='small'>
-  		  	<!-- <br><sup>*</sup>C. Chan is currently a graduate student at MIT CSAIL.</br> -->
-  		  	<br><sup>*</sup>Q. Sun and A. Deng did this project during their internship at UoA</br>
-  		  </p>
 </body>
 </html>
