@@ -11,7 +11,7 @@ Anaconda is recommended to create this virtual environment.
   
   ```sh
   conda create -f environment.yaml
-  source activate text2motion_pub
+  conda activate text2motion_pub
   ```
   
 If you cannot successfully create the environment, here is a list of required libraries:
