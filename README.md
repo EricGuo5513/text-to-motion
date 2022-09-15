@@ -54,7 +54,8 @@ If you cannot successfully create the environment, here is a list of required li
   ./dataset/HumanML3D/test.txt
   ./dataset/HumanML3D/train.txt
   ./dataset/HumanML3D/train_val.txt
-  ./dataset/HumanML3D/val.txt    
+  ./dataset/HumanML3D/val.txt  
+  ./dataset/HumanML3D/all.txt 
   ```
  ### Pre-trained Models
   Create a checkpoint folder to place pre-traine models:
