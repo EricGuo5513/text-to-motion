@@ -132,7 +132,7 @@ if __name__ == '__main__':
 
     # if opt.est_length:
     estimator = MotionLenEstimatorBiGRU(dim_word, dim_pos_ohot, 512, num_classes)
-    checkpoints = torch.load(pjoin(opt.checkpoints_dir, opt.dataset_name, 'length_est_bigru', 'model', 'latest.tar'))
+    checkpoints = torch.load(pjoin(opt.checkpoints_dir, opt.dataset_name, 'length_est_bigru', 'model', 'latest.tar'), map_location=torch.device("cuda"))
     estimator.load_state_dict(checkpoints['estimator'])
     estimator.to(opt.device)
     estimator.eval()

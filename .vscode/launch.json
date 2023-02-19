@@ -1,0 +1,23 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "gen_motion_script",
+            "type": "python",
+            "request": "launch",
+            "program": "gen_motion_script.py",
+            "args": [
+                "--name", "Comp_v6_KLD01",
+                "--text_file", "input.txt",
+                "--repeat_time", "3",
+                "--ext", "customized",
+                "--gpu_id", "0"
+            ],
+            "console": "integratedTerminal",
+            "justMyCode": true
+        }
+    ]
+}

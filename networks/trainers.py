@@ -5,7 +5,7 @@ from networks.modules import *
 from torch.utils.data import DataLoader
 import torch.optim as optim
 from torch.nn.utils import clip_grad_norm_
-import tensorflow as tf
+# import tensorflow as tf
 from collections import OrderedDict
 from utils.utils import *
 from os.path import join as pjoin
@@ -15,12 +15,14 @@ import codecs as cs
 
 class Logger(object):
   def __init__(self, log_dir):
-    self.writer = tf.summary.create_file_writer(log_dir)
+    # self.writer = tf.summary.create_file_writer(log_dir)
+    pass
 
   def scalar_summary(self, tag, value, step):
-      with self.writer.as_default():
-          tf.summary.scalar(tag, value, step=step)
-          self.writer.flush()
+    #   with self.writer.as_default():
+    #       tf.summary.scalar(tag, value, step=step)
+    #       self.writer.flush()
+    pass
 
 class DecompTrainerV3(object):
     def __init__(self, args, movement_enc, movement_dec):
