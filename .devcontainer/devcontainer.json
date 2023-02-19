@@ -1,0 +1,25 @@
+{
+	"name": "GPU devcontainer",
+	"build": {
+		"context": "..",
+		"dockerfile": "dev.Dockerfile"
+	},
+	"updateContentCommand": ".devcontainer/updateContent.sh",
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"cweijan.vscode-typora",
+				"ms-python.python",
+				"analytic-signal.preview-mp4"
+			]
+		}
+	},
+	"initializeCommand": "xhost +SI:localuser:root",	
+	"runArgs": [
+		"--privileged",
+		"-e", "DISPLAY=${env:DISPLAY}",
+		"-v", "/tmp/.X11-unix:/tmp/.X11-unix",
+		"--gpus", "all",
+		"--cap-add=SYS_PTRACE", "--security-opt", "seccomp=unconfined"
+	]
+}
