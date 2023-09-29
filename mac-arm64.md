@@ -90,6 +90,79 @@ Animation Results
 01_005
 02_005
 03_005
+04_005
 
+╭─   ~/src/aitok/text-to-motion   main !1 ?1 ·································································  1m 24s  text2motion_pub seki@Legion-Ubuntu  17:06:49
+╰─❯ 
+```
+
+The results are in the `eval_results` folder:
+```
+╭─   ~/src/aitok/text-to-motion/eval_results/t2m/Comp_v6_KLD01   main !1 ?1 ···········································  text2motion_pub seki@Legion-Ubuntu  17:08:41
+╰─❯ tree
+.
+├── customized
+│   ├── animations
+│   │   ├── C000
+│   │   │   ├── gen_motion_00_L068_00_a.mp4
+│   │   │   ├── gen_motion_00_L068_00_a.npy
+│   │   │   ├── gen_motion_01_L072_00_a.mp4
+│   │   │   ├── gen_motion_01_L072_00_a.npy
+│   │   │   ├── gen_motion_02_L080_00_a.mp4
+│   │   │   └── gen_motion_02_L080_00_a.npy
+│   │   ├── C001
+│   │   │   ├── gen_motion_00_L164_00_a.mp4
+│   │   │   ├── gen_motion_00_L164_00_a.npy
+│   │   │   ├── gen_motion_01_L196_00_a.mp4
+│   │   │   ├── gen_motion_01_L196_00_a.npy
+│   │   │   ├── gen_motion_02_L156_00_a.mp4
+│   │   │   └── gen_motion_02_L156_00_a.npy
+│   │   ├── C002
+│   │   │   ├── gen_motion_00_L196_00_a.mp4
+│   │   │   ├── gen_motion_00_L196_00_a.npy
+│   │   │   ├── gen_motion_01_L192_00_a.mp4
+│   │   │   ├── gen_motion_01_L192_00_a.npy
+│   │   │   ├── gen_motion_02_L192_00_a.mp4
+│   │   │   └── gen_motion_02_L192_00_a.npy
+│   │   ├── C003
+│   │   │   ├── gen_motion_00_L196_00_a.mp4
+│   │   │   ├── gen_motion_00_L196_00_a.npy
+│   │   │   ├── gen_motion_01_L196_00_a.mp4
+│   │   │   ├── gen_motion_01_L196_00_a.npy
+│   │   │   ├── gen_motion_02_L192_00_a.mp4
+│   │   │   └── gen_motion_02_L192_00_a.npy
+│   │   └── C004
+│   │       ├── gen_motion_00_L196_00_a.mp4
+│   │       ├── gen_motion_00_L196_00_a.npy
+│   │       ├── gen_motion_01_L196_00_a.mp4
+│   │       ├── gen_motion_01_L196_00_a.npy
+│   │       ├── gen_motion_02_L196_00_a.mp4
+│   │       └── gen_motion_02_L196_00_a.npy
+│   └── joints
+│       ├── C000
+│       │   ├── gen_motion_00_L068.npy
+│       │   ├── gen_motion_01_L072.npy
+│       │   └── gen_motion_02_L080.npy
+│       ├── C001
+│       │   ├── gen_motion_00_L164.npy
+│       │   ├── gen_motion_01_L196.npy
+│       │   └── gen_motion_02_L156.npy
+│       ├── C002
+│       │   ├── gen_motion_00_L196.npy
+│       │   ├── gen_motion_01_L192.npy
+│       │   └── gen_motion_02_L192.npy
+│       ├── C003
+│       │   ├── gen_motion_00_L196.npy
+│       │   ├── gen_motion_01_L196.npy
+│       │   └── gen_motion_02_L192.npy
+│       └── C004
+│           ├── gen_motion_00_L196.npy
+│           ├── gen_motion_01_L196.npy
+│           └── gen_motion_02_L196.npy
+└── default
+    ├── animations
+    └── joints
+
+16 directories, 45 files
 
 ```
