@@ -2,3 +2,10 @@
 
 Note
 - Mac M2 (ARM64) doesn't have conda support for python-3.7 (earliest supported is python-3.8)
+
+## Correction
+
+- install conda env
+```
+conda env  create -f environment.yaml
+```
