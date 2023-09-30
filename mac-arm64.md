@@ -1,11 +1,21 @@
 # Installation Notes on Mac M2
 
-Note
-- Mac M2 (ARM64) doesn't have conda support for python-3.7 (earliest supported is python-3.8)
+Notes:
 
-## Correction
+- **Mac M2 (ARM64) doesn't have conda support for python-3.7** (earliest supported is python-3.8)
+- M2 does not work CUDA (which requires NVIDIA hardware)
 
-- install conda env
+## Install conda and python-3.11 dependencies
+
+- create the conda env with python-3.11
+```
+conda create --name text2motion python=3.11
+```
+
+# Amendments to Linux Installation
+
+## install conda env
+
 ```
 conda env  create -f environment.yaml
 ```
