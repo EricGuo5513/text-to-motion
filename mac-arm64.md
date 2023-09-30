@@ -3,13 +3,17 @@
 Notes:
 
 - **Mac M2 (ARM64) doesn't have conda support for python-3.7** (earliest supported is python-3.8)
-- M2 does not work CUDA (which requires NVIDIA hardware)
+- M2 does not work CUDA (which requires NVIDIA hardware): therefore no `tensorrt`
 
 ## Install conda and python-3.11 dependencies
 
 - create the conda env with python-3.11
 ```
 conda create --name text2motion python=3.11
+```
+- install python packages (note that I had to comment out `tensorrt` from the [requirements.txt](./requirements.txt) file)
+```
+pip install -r requirements.txt
 ```
 
 # Amendments to Linux Installation
