@@ -16,10 +16,11 @@ conda create --name text2motion python=3.11
 pip install -r requirements.txt
 ```
 - follow [README.md](./README.md): `python -m spacy download en_core_web_sm`
+- Install ffmpeg: `brew install ffmpeg`
 
 ## Run without GPU (ie, with CPU)
 
-The `--gpu_id -1` flag is supposed to specify CPU only but it is not working:
+This works only after [this fix](https://github.com/jinzishuai/text-to-motion/commit/38af3faf0b63cd572e574da5c41e73293703fbaa). Note that `--gpu_id -1` means "cpu".
 
 ```
 python gen_motion_script.py --name Comp_v6_KLD01 --text_file input.txt --repeat_time 3 --ext customized --gpu_id -1
