@@ -15,6 +15,16 @@ conda create --name text2motion python=3.11
 ```
 pip install -r requirements.txt
 ```
+- follow [README.md](./README.md): `python -m spacy download en_core_web_sm`
+
+## Run without GPU (ie, with CPU)
+
+The `--gpu_id -1` flag is supposed to specify CPU only but it is not working:
+
+```
+python gen_motion_script.py --name Comp_v6_KLD01 --text_file input.txt --repeat_time 3 --ext customized --gpu_id -1
+```
+
 
 # Amendments to Linux Installation
 
