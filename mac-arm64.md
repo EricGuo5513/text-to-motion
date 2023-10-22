@@ -56,6 +56,8 @@ Archive:  kit.zip
    creating: kit/
 ```
 
+**Note that we don't need the `datasets` to just run the inference.**
+
 # Test Run
 
 ## First Test
