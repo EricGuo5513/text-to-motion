@@ -4,7 +4,7 @@ torchaudio
 scipy
 numpy==1.23.5
 # tensorflow==2.11.0
-tensorrt
+# tensorrt
 spacy
 tqdm
 matplotlib==3.3.1
