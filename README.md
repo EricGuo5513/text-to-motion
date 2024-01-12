@@ -10,7 +10,7 @@
 Anaconda is recommended to create this virtual environment.
   
   ```sh
-  conda create -f environment.yaml
+  conda env create -f environment.yaml
   conda activate text2motion_pub
   ```
   
